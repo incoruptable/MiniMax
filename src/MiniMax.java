@@ -78,7 +78,7 @@ public class MiniMax {
         Node bestMove = currentState;
         for (Node child : currentState.children) {
 
-            int currentValue = miniMax(child, 0, 1);
+            int currentValue = miniMax(child, 0, -1);
             if (currentValue > bestValue) {
                 bestMove = child;
                 bestValue = currentValue;
@@ -90,13 +90,18 @@ public class MiniMax {
 
     public int miniMax(Node node, int depth, int player) {
         if (node.gameOver) {
-            return node.getResultOfGame() - depth;
+            if (node.getResultOfGame() == 10)
+                return node.getResultOfGame() - depth;
+            else if (node.getResultOfGame() == -10)
+                return depth + node.getResultOfGame();
+            return 0;
         }
         int bestValue;
         if (player == 1) {
             bestValue = -2000000;
             for (Node child : node.children) {
                 int childValue = miniMax(child, depth + 1, -1);
+                //System.out.print("Child Value = " + childValue + "\n");
                 if (childValue > bestValue) {
                     bestValue = childValue;
                 }
@@ -105,6 +110,7 @@ public class MiniMax {
             bestValue = 2000000;
             for (Node child : node.children) {
                 int childValue = miniMax(child, depth + 1, 1);
+                // System.out.print("Child Value = " + childValue + "\n");
                 if (childValue < bestValue) {
                     bestValue = childValue;
                 }

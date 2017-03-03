@@ -51,7 +51,7 @@ public class Node {
                             break FOUND;
                         }
                     }
-                    resultOfGame = 1;
+                    resultOfGame = 10;
                     gameOver = true;
                     return gameOver;
                 }
@@ -63,7 +63,7 @@ public class Node {
                             break FOUND;
                         }
                     }
-                    resultOfGame = -1;
+                    resultOfGame = -10;
                     gameOver = true;
                     return gameOver;
                 }
@@ -80,7 +80,7 @@ public class Node {
                         if (nodeState[i + j * 3] != 1)
                             break FOUND;
                     }
-                    resultOfGame = 1;
+                    resultOfGame = 10;
                     gameOver = true;
                     return gameOver;
                 }
@@ -91,7 +91,7 @@ public class Node {
                         if (nodeState[i + j * 3] != -1)
                             break FOUND;
                     }
-                    resultOfGame = -1;
+                    resultOfGame = -10;
                     gameOver = true;
                     return gameOver;
                 }
@@ -108,7 +108,7 @@ public class Node {
                         break FOUND;
                     }
                 }
-                resultOfGame = 1;
+                resultOfGame = 10;
                 gameOver = true;
                 return gameOver;
             }
@@ -120,7 +120,7 @@ public class Node {
                         break FOUND;
                     }
                 }
-                resultOfGame = -1;
+                resultOfGame = -10;
                 gameOver = true;
                 return gameOver;
             }
@@ -135,7 +135,7 @@ public class Node {
                         break FOUND;
                     }
                 }
-                resultOfGame = 1;
+                resultOfGame = 10;
                 gameOver = true;
                 return gameOver;
             }
@@ -147,7 +147,7 @@ public class Node {
                         break FOUND;
                     }
                 }
-                resultOfGame = -1;
+                resultOfGame = -10;
                 gameOver = true;
                 return gameOver;
             }

@@ -17,16 +17,16 @@ public class MiniMax {
         System.out.println("Hello HUMAN! Welcome to tic-tac toe! Good luck! ;)\n");
         printState(root.getNodeState());
 
-        //TESTING
-        currentState = prevState.getChildForPosition(0);
-        prevState = currentState;
-        currentState = prevState.getChildForPosition(3);
-        prevState = currentState;
-        currentState = prevState.getChildForPosition(6);
-        prevState = currentState;
-        currentState = prevState.getChildForPosition(4);
-        printState(currentState.getNodeState());
-        prevState = currentState;
+//        //TESTING
+//        currentState = prevState.getChildForPosition(0);
+//        prevState = currentState;
+//        currentState = prevState.getChildForPosition(3);
+//        prevState = currentState;
+//        currentState = prevState.getChildForPosition(6);
+//        prevState = currentState;
+//        currentState = prevState.getChildForPosition(4);
+//        printState(currentState.getNodeState());
+//        prevState = currentState;
         while (!stop) {
 
             System.out.println("Enter which space to place an X:");
@@ -40,8 +40,8 @@ public class MiniMax {
                 System.out.print("This position is already filled. Please try again. ");
                 continue;
             }
-            if (currentState.getResultOfGame() != 0) {
-                if (currentState.getResultOfGame() == -1) {
+            if (currentState.gameOver) {
+                if (currentState.getResultOfGame() == -10) {
                     System.out.print("YOU WIN THIS TIME HUMAN! :(");
                 } else {
                     System.out.print("WE ARE EVENLY MATCHED I SEE!");
@@ -54,12 +54,13 @@ public class MiniMax {
             currentState = findBestMove(prevState);
             printState(currentState.getNodeState());
 
-            if (currentState.getResultOfGame() != 0) {
-                if (currentState.getResultOfGame() == 2) {
+            if (currentState.gameOver) {
+                if (currentState.getResultOfGame() == 10) {
                     System.out.print("I KNEW YOU WERE NO MATCH FOR ME!");
                 } else {
                     System.out.print("WE ARE EVENLY MATCHED I SEE!");
                 }
+                return;
             }
             System.out.print("\n");
             prevState = currentState;
@@ -88,8 +89,8 @@ public class MiniMax {
     }
 
     public int miniMax(Node node, int depth, int player) {
-        if (node.getResultOfGame() != 0) {
-            return node.getResultOfGame();
+        if (node.gameOver) {
+            return node.getResultOfGame() - depth;
         }
         int bestValue;
         if (player == 1) {
@@ -97,7 +98,7 @@ public class MiniMax {
             for (Node child : node.children) {
                 int childValue = miniMax(child, depth + 1, -1);
                 if (childValue > bestValue) {
-                    bestValue = childValue - depth;
+                    bestValue = childValue;
                 }
             }
         } else {
@@ -105,7 +106,7 @@ public class MiniMax {
             for (Node child : node.children) {
                 int childValue = miniMax(child, depth + 1, 1);
                 if (childValue < bestValue) {
-                    bestValue = childValue - depth;
+                    bestValue = childValue;
                 }
             }
         }

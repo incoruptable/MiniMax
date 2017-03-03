@@ -17,16 +17,16 @@ public class MiniMax {
         System.out.println("Hello HUMAN! Welcome to tic-tac toe! Good luck! ;)\n");
         printState(root.getNodeState());
 
-//        //TESTING
-//        currentState = prevState.getChildForPosition(0);
-//        prevState = currentState;
-//        currentState = prevState.getChildForPosition(3);
-//        prevState = currentState;
-//        currentState = prevState.getChildForPosition(6);
-//        prevState = currentState;
-//        currentState = prevState.getChildForPosition(4);
-//        printState(currentState.getNodeState());
-//        prevState = currentState;
+        //TESTING
+        currentState = prevState.getChildForPosition(0);
+        prevState = currentState;
+        currentState = prevState.getChildForPosition(3);
+        prevState = currentState;
+        currentState = prevState.getChildForPosition(6);
+        prevState = currentState;
+        currentState = prevState.getChildForPosition(4);
+        printState(currentState.getNodeState());
+        prevState = currentState;
         while (!stop) {
 
             System.out.println("Enter which space to place an X:");
@@ -55,7 +55,7 @@ public class MiniMax {
             printState(currentState.getNodeState());
 
             if (currentState.getResultOfGame() != 0) {
-                if (currentState.getResultOfGame() == 1) {
+                if (currentState.getResultOfGame() == 2) {
                     System.out.print("I KNEW YOU WERE NO MATCH FOR ME!");
                 } else {
                     System.out.print("WE ARE EVENLY MATCHED I SEE!");

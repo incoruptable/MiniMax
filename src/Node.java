@@ -3,8 +3,9 @@ import java.util.List;
 
 public class Node {
     public List<Node> children;
+    public boolean gameOver;
     private Node parent;
-    private int resultOfGame; //2 means that computer has won, 1 means that the game was a tie,0 means that the game was a tie, -1 means that human has won,
+    private int resultOfGame; //1 means that computer has won, 0 means that the game was a tie, -1 means that human has won,
     private int[] nodeState; //1 means that an O has been placed(Computer), 0 means that nothing is there, -1 means that an X has been placed(Human)
 
     public Node(Node parent) {
@@ -50,8 +51,9 @@ public class Node {
                             break FOUND;
                         }
                     }
-                    resultOfGame = 2;
-                    return true;
+                    resultOfGame = 1;
+                    gameOver = true;
+                    return gameOver;
                 }
             } else if (nodeState[i * 3] == -1) {
                 FOUND:
@@ -62,7 +64,8 @@ public class Node {
                         }
                     }
                     resultOfGame = -1;
-                    return true;
+                    gameOver = true;
+                    return gameOver;
                 }
             }
         }
@@ -77,8 +80,9 @@ public class Node {
                         if (nodeState[i + j * 3] != 1)
                             break FOUND;
                     }
-                    resultOfGame = 2;
-                    return true;
+                    resultOfGame = 1;
+                    gameOver = true;
+                    return gameOver;
                 }
             } else if (nodeState[i] == -1) {
                 FOUND:
@@ -88,7 +92,8 @@ public class Node {
                             break FOUND;
                     }
                     resultOfGame = -1;
-                    return true;
+                    gameOver = true;
+                    return gameOver;
                 }
             }
         }
@@ -103,8 +108,9 @@ public class Node {
                         break FOUND;
                     }
                 }
-                resultOfGame = 2;
-                return true;
+                resultOfGame = 1;
+                gameOver = true;
+                return gameOver;
             }
         } else if (nodeState[0] == -1) {
             FOUND:
@@ -115,7 +121,8 @@ public class Node {
                     }
                 }
                 resultOfGame = -1;
-                return true;
+                gameOver = true;
+                return gameOver;
             }
         }
 
@@ -128,8 +135,9 @@ public class Node {
                         break FOUND;
                     }
                 }
-                resultOfGame = 2;
-                return true;
+                resultOfGame = 1;
+                gameOver = true;
+                return gameOver;
             }
         } else if (nodeState[2] == -1) {
             FOUND:
@@ -140,17 +148,20 @@ public class Node {
                     }
                 }
                 resultOfGame = -1;
-                return true;
+                gameOver = true;
+                return gameOver;
             }
         }
 
         for (int i = 0; i < 9; i++) {
             if (nodeState[i] == 0) {
-                return false;
+                gameOver = false;
+                return gameOver;
             }
         }
-        resultOfGame = 1;
-        return true;
+        resultOfGame = 0;
+        gameOver = true;
+        return gameOver;
     }
 
     public int[] getNodeState() {
